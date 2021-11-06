@@ -1,7 +1,7 @@
 package com.tcd.lucene.util;
 
 public interface Constants {
-	
+
 	interface FBIS {
 		final static String DOC = "DOC";
 		final static String DOCNO = "DOCNO";
@@ -47,6 +47,25 @@ public interface Constants {
 		final static String FRFILING = "FRFILING";
 		final static String BILLING = "BILLING";
 		final static String TABLE = "TABLE";
+	}
+
+	interface FT {
+		final static String XX = "XX";
+		final static String BYLINE = "BYLINE";
+		final static String IN = "IN";
+		final static String TEXT = "TEXT";
+		final static String PAGE = "PAGE";
+		final static String CN = "CN";
+		final static String CO = "CO";
+		final static String DATELINE = "DATELINE";
+		final static String DATE = "DATE";
+		final static String PROFILE = "PROFILE";
+		final static String PE = "PE";
+		final static String DOC = "DOC";
+		final static String DOCNO = "DOCNO";
+		final static String HEADLINE = "HEADLINE";
+		final static String PUB = "PUB";
+		final static String TP = "TP";
 	}
 
 }

@@ -12,12 +12,13 @@ import org.jsoup.parser.Parser;
 
 import com.tcd.lucene.model.FR94Document;
 import com.tcd.lucene.util.Constants;
+import com.tcd.lucene.util.ParsingUtils;
 
 public class FR94Parser {
 
 	public static void parseNestedFolders(File[] files, List<FR94Document> fr94DocList) throws IOException {
 		for (File file : files) {
-			if (ignoreFile(file)) {
+			if (ParsingUtils.ignoreFile(file)) {
 				System.out.println("Ignoring:: " + file.getName() );
 				continue;
 			}
@@ -26,21 +27,12 @@ public class FR94Parser {
 			} else {
 				FileInputStream fis = new FileInputStream(file);
 				Document doc = Jsoup.parse(fis, null, "", Parser.xmlParser());
-				for (Element rootElement : doc.select(Constants.FBIS.DOC)) {
+				for (Element rootElement : doc.select(Constants.FR94.DOC)) {
 					FR94Document fr94Doc = parseDoc(rootElement);
 					fr94DocList.add(fr94Doc);
 				}
 				fis.close();
 			}
-		}
-	}
-
-	// ignore file if it's .DS or readme or something read
-	private static boolean ignoreFile(File file) {
-		if (file.getName().startsWith("~")) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 
