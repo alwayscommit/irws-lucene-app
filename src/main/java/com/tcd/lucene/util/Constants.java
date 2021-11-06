@@ -28,7 +28,7 @@ public interface Constants {
 
 	interface FR94 {
 		final static String DOC = "DOC";
-		final static String DOC_NO = "DOCNO";
+		final static String DOCNO = "DOCNO";
 		final static String PARENT = "PARENT";
 		final static String TEXT = "TEXT";
 		final static String USDEPT = "USDEPT";

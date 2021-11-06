@@ -1,11 +1,12 @@
 package com.tcd.lucene;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.tcd.lucene.model.FBISDocument;
 import com.tcd.lucene.model.FR94Document;
-import com.tcd.lucene.parser.FBISParser;
 import com.tcd.lucene.parser.FR94Parser;
 
 //parse FR94
@@ -26,9 +27,10 @@ public class LuceneApp {
 
 	public static void main(String[] args) {
 		try {
-			fbisDocList = FBISParser.parse(FBIS_PATH);
-			System.out.println(fbisDocList.size());
-			fr94DocList = FR94Parser.parse(FR94_PATH);
+//			fbisDocList = FBISParser.parse(FBIS_PATH);
+//			System.out.println(fbisDocList.size());
+			List<FR94Document> fr94DocList = new ArrayList<FR94Document>();
+			FR94Parser.parseNestedFolders(new File(FR94_PATH).listFiles(), fr94DocList);
 			System.out.println(fr94DocList.size());
 		} catch (IOException e) {
 			e.printStackTrace();
