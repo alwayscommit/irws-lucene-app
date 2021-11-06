@@ -1,17 +1,29 @@
 package com.tcd.lucene.util;
 
 public interface Constants {
-
+	
 	interface FBIS {
 		final static String DOC = "DOC";
-		final static String DOC_NO = "DOCNO";
+		final static String DOCNO = "DOCNO";
 		final static String HT = "HT";
 		final static String HEADER = "HEADER";
 		final static String H2 = "H2";
-		final static String DATE_1 = "DATE1";
+		final static String DATE1 = "DATE1";
 		final static String H3 = "H3";
 		final static String TI = "TI";
 		final static String TEXT = "TEXT";
+		final static String TXT5 = "TXT5";
+		final static String FIG = "FIG";
+		final static String F = "F";
+		final static String H4 = "H4";
+		final static String H5 = "H5";
+		final static String H6 = "H6";
+		final static String H7 = "H7";
+		final static String H8 = "H8";
+		final static String ABS = "ABS";
+		final static String AU = "AU";
+		final static String PHRASE = "PHRASE";
+		final static String TR = "TR";
 	}
 
 	interface FR94 {

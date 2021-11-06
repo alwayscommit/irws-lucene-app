@@ -40,12 +40,11 @@ public class LuceneTagIdentifierApp {
 	}
 
 	private static void getTags(File[] fbisDirectory, Set<String> tagList) throws IOException {
-		FileInputStream fis;
 		for (File file : fbisDirectory) {
 			if (file.isDirectory()) {
 				getTags(file.listFiles(), tagList);
 			} else {
-				fis = new FileInputStream(file);
+				FileInputStream fis = new FileInputStream(file);
 				Document doc = Jsoup.parse(fis, null, "", Parser.xmlParser());
 				for (Element rootElement : doc.select(Constants.FBIS.DOC)) {
 					Elements elementList = rootElement.getAllElements();
