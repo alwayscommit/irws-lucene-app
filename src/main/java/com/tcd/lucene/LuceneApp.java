@@ -17,13 +17,13 @@ public class LuceneApp {
 	//jsoup -> java models -> build the fields to index on StringField TextField (lucene)
 
 	// parse FBIS
-	private static final String FBIS_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fbis\\";
-//	private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
+//	private static final String FBIS_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fbis\\";
+	private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 	
 	public static void main(String[] args) {
 		try {
-			List<FBISDocument> fbisDocList = FBISParser.parse(FBIS_PATH);
-			System.out.println(fbisDocList);
+			List<FBISDocument> fbisDocList = FBISParser.parse(TEST_PATH);
+			System.out.println(fbisDocList.size());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
