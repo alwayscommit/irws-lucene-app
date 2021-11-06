@@ -1,4 +1,4 @@
-package com.tcd.lucene;
+package com.tcd.lucene.util;
 
 public interface Constants {
 
