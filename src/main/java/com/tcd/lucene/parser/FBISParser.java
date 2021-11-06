@@ -27,11 +27,11 @@ public class FBISParser {
 			for (Element rootElement : doc.select(Constants.FBIS.DOC)) {
 				FBISDocument fbisDoc = parseDoc(rootElement);
 				fbisDocList.add(fbisDoc);
-			}
+			} 
 			fis.close();
 		}
 		return fbisDocList;
-	}
+	} 
 
 	private static FBISDocument parseDoc(Element rootElement) {
 		List<Element> elementList = rootElement.getAllElements();
