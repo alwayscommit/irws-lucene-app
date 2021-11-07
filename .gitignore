@@ -28,3 +28,10 @@ hs_err_pid*
 target
 .settings
 
+# IntelliJ config
+.idea
+
+# Given documents
+Assignment Two/**
+topics
+
