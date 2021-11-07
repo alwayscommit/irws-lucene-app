@@ -8,6 +8,9 @@ import java.util.List;
 import com.tcd.lucene.model.FBISDocument;
 import com.tcd.lucene.model.FR94Document;
 import com.tcd.lucene.model.FTDocument;
+import com.tcd.lucene.model.LATimesDocument;
+import com.tcd.lucene.parser.FBISParser;
+import com.tcd.lucene.parser.FR94Parser;
 import com.tcd.lucene.parser.FTParser;
 import com.tcd.lucene.parser.LATimesParser;
 
@@ -25,27 +28,23 @@ public class LuceneApp {
 	private static final String FR94_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fr94\\";
 	private static final String FT_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\ft\\";
 	private static final String LATIMES_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\latimes\\";
-	
+
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 	private static List<FBISDocument> fbisDocList = new ArrayList<FBISDocument>();
 	private static List<FR94Document> fr94DocList = new ArrayList<FR94Document>();
 	private static List<FTDocument> ftDocList = new ArrayList<FTDocument>();
-	private static List<FTDocument> laTimesDocList = new ArrayList<FTDocument>();
-	
+	private static List<LATimesDocument> laTimesDocList = new ArrayList<LATimesDocument>();
+
 	public static void main(String[] args) {
 		try {
-//			fbisDocList = FBISParser.parse(FBIS_PATH);
-//			System.out.println(fbisDocList.size());
-//			FR94Parser.parseNestedFolders(new File(FR94_PATH).listFiles(), fr94DocList);
-//			System.out.println(fr94DocList.size());
-			
-//			FTParser.parseNestedFolders(new File(FT_PATH).listFiles(), ftDocList);
-//			System.out.println(ftDocList.size());
-			
-			LATimesParser.parseNestedFolders(new File(LATIMES_PATH).listFiles(), laTimesDocList);
-			System.out.println(laTimesDocList.size());
-			
-			
+//			FBISParser.parse(FBIS_PATH, fbisDocList);
+//			System.out.println("FBIS Count :: " + fbisDocList.size());
+			FR94Parser.parseNestedFolders(new File(FR94_PATH).listFiles(), fr94DocList);
+			System.out.println("FR94 Count :: " + fr94DocList.size());
+			FTParser.parseNestedFolders(new File(FT_PATH).listFiles(), ftDocList);
+			System.out.println("FT Count :: " + ftDocList.size());
+			LATimesParser.parse(LATIMES_PATH, laTimesDocList);
+			System.out.println("LATimes Count8 :: " + laTimesDocList.size());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

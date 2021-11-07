@@ -2,9 +2,6 @@ package com.tcd.lucene.model;
 
 public class FBISDocument {
 
-	/*[TXT5, FIG, F, H1, HEADER, H2, TEXT, H3, HT, H4, H5, H6, H7, H8, 
-	 * ABS, AU, TI, DOC, PHRASE, DOCNO, DATE1, TR]*/
-
 	private String doc;
 	private String docNo;
 	private String date1;

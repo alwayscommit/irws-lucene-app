@@ -3,25 +3,25 @@ package com.tcd.lucene.parser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
-import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
 import com.tcd.lucene.model.FBISDocument;
 import com.tcd.lucene.util.Constants;
+import com.tcd.lucene.util.ParsingUtils;
 
 public class FBISParser {
 
-	public static List<FBISDocument> parse(String fbisPath) throws IOException {
+	public static void parse(String fbisPath, List<FBISDocument> fbisDocList) throws IOException {
 		File fbisDirectory = new File(fbisPath);
-		List<FBISDocument> fbisDocList = new ArrayList<FBISDocument>();
 		for (File file : fbisDirectory.listFiles()) {
+			if (ParsingUtils.ignoreFile(file)) {
+				continue;
+			}
 			FileInputStream fis = new FileInputStream(file);
 			Document doc = Jsoup.parse(fis, null, "", Parser.xmlParser());
 			for (Element rootElement : doc.select(Constants.FBIS.DOC)) {
@@ -30,7 +30,6 @@ public class FBISParser {
 			} 
 			fis.close();
 		}
-		return fbisDocList;
 	} 
 
 	private static FBISDocument parseDoc(Element rootElement) {

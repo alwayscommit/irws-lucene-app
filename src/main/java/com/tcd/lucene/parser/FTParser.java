@@ -2,7 +2,6 @@ package com.tcd.lucene.parser;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
-import com.tcd.lucene.model.FR94Document;
 import com.tcd.lucene.model.FTDocument;
 import com.tcd.lucene.util.Constants;
 import com.tcd.lucene.util.ParsingUtils;

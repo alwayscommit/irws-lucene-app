@@ -19,7 +19,6 @@ public class FR94Parser {
 	public static void parseNestedFolders(File[] files, List<FR94Document> fr94DocList) throws IOException {
 		for (File file : files) {
 			if (ParsingUtils.ignoreFile(file)) {
-				System.out.println("Ignoring:: " + file.getName() );
 				continue;
 			}
 			if (file.isDirectory()) {
@@ -54,7 +53,7 @@ public class FR94Parser {
 			fr94Doc.setParent(element.ownText());
 			break;
 		case Constants.FR94.TEXT:
-			fr94Doc.setText(element.ownText());
+			fr94Doc.setText(element.text());
 			break;
 		case Constants.FR94.USDEPT:
 			fr94Doc.setText(element.ownText());

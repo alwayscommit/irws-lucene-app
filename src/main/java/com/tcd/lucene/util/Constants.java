@@ -68,4 +68,30 @@ public interface Constants {
 		final static String TP = "TP";
 	}
 
+	interface LATimes {
+
+		final static String BYLINE = "BYLINE";
+		final static String LENGTH = "LENGTH";
+		final static String ROWRULE = "ROWRULE";
+		final static String TABLECELL = "TABLECELL";
+		final static String GRAPHIC = "GRAPHIC";
+		final static String TEXT = "TEXT";
+		final static String TABLEROW = "TABLEROW";
+		final static String DATELINE = "DATELINE";
+		final static String DOCID = "DOCID";
+		final static String P = "P";
+		final static String TABLE = "TABLE";
+		final static String DATE = "DATE";
+		final static String CORRECTION = "CORRECTION";
+		final static String DOC = "DOC";
+		final static String SUBJECT = "SUBJECT";
+		final static String CORRECTIONDATE = "CORRECTIONDATE";
+		final static String DOCNO = "DOCNO";
+		final static String HEADLINE = "HEADLINE";
+		final static String CELLRULE = "CELLRULE";
+		final static String TYPE = "TYPE";
+		final static String SECTION = "SECTION";
+
+	}
+
 }
