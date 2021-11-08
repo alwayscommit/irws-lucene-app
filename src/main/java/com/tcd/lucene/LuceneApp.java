@@ -29,10 +29,10 @@ public class LuceneApp {
 	// jsoup -> java models -> build the fields to index on StringField TextField (lucene)
 
 	// parse FBIS
-	private static final String FBIS_PATH = System.getProperty("user.dir") + "\\Assignment Two\\fbis\\";
-	private static final String FR94_PATH =  System.getProperty("user.dir") + "\\Assignment Two\\fr94\\";
-	private static final String FT_PATH =  System.getProperty("user.dir") + "\\Assignment Two\\ft\\";
-	private static final String LATIMES_PATH =  System.getProperty("user.dir") + "\\Assignment Two\\latimes\\";
+	private static final String FBIS_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fbis\\";
+	private static final String FR94_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fr94\\";
+	private static final String FT_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\ft\\";
+	private static final String LATIMES_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\latimes\\";
 
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 	private static List<FBISDocument> fbisDocList = new ArrayList<FBISDocument>();
