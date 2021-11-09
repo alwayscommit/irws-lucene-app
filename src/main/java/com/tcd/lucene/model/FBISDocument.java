@@ -3,7 +3,7 @@ package com.tcd.lucene.model;
 public class FBISDocument {
 
 	private String doc;
-	private String docNo;
+	private String docNo = "";
 	private String date1;
 	private String tr;
 	private String phrase;
@@ -23,7 +23,7 @@ public class FBISDocument {
 	private String au;
 	private String ti;
 	private String header;
-	private String text;
+	private String text = "";
 
 	public String getDoc() {
 		return doc;
