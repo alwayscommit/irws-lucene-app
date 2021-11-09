@@ -2,22 +2,16 @@ package com.tcd.lucene;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tcd.lucene.indexer.EnglishIndexer;
 import com.tcd.lucene.model.*;
 import com.tcd.lucene.parser.FBISParser;
 import com.tcd.lucene.parser.FR94Parser;
 import com.tcd.lucene.parser.FTParser;
 import com.tcd.lucene.parser.LATimesParser;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.FSDirectory;
 
 //parse FR94
 //parse FT
@@ -33,6 +27,7 @@ public class LuceneApp {
 	private static final String FR94_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fr94\\";
 	private static final String FT_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\ft\\";
 	private static final String LATIMES_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\latimes\\";
+	
 
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 	private static List<FBISDocument> fbisDocList = new ArrayList<FBISDocument>();
@@ -42,9 +37,6 @@ public class LuceneApp {
 
 	// list of documents that will be added to the index
 	private static List<Document> luceneDocuments = new ArrayList<Document>();
-
-	// Directory where the search index will be saved
-	private static String INDEX_DIR = "index";
 
 	public static void main(String[] args) throws IOException {
 		try {
@@ -64,16 +56,9 @@ public class LuceneApp {
 			e.printStackTrace();
 		}
 
-		Analyzer analyzer = new EnglishAnalyzer();
-		Directory directory = FSDirectory.open(Paths.get(INDEX_DIR));
-
-		IndexWriterConfig indexConfig = new IndexWriterConfig(analyzer);
-		indexConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-		IndexWriter indexWriter = new IndexWriter(directory, indexConfig);
-		indexWriter.addDocuments(luceneDocuments);
-
-		indexWriter.close();
-		directory.close();
+// 		StandardIndexer indexer = new StandardIndexer();
+        EnglishIndexer indexer = new EnglishIndexer();
+        indexer.processIndex(luceneDocuments);
 	}
 
 }

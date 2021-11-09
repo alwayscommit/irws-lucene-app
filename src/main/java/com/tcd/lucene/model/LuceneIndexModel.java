@@ -4,12 +4,11 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-
 import java.util.List;
 
 public class LuceneIndexModel {
 
-    public static void indexFBIS(List<FBISDocument> fbisDocuments, List<Document> luceneDocuments){
+    public static void indexFBIS(List<FBISDocument> fbisDocuments, List<Document> luceneDocuments) {
         for(FBISDocument fbisDocument : fbisDocuments){
             Document doc = new Document();
             doc.add(new StringField("documentId", fbisDocument.getDocNo(), Field.Store.YES));
@@ -36,7 +35,7 @@ public class LuceneIndexModel {
         }
     }
 
-    public static void indexLATimes(List<LATimesDocument> laTimesDocuments, List<Document> luceneDocuments){
+    public static void indexLATimes(List<LATimesDocument> laTimesDocuments, List<Document> luceneDocuments) {
         for(LATimesDocument laTimesDocument : laTimesDocuments){
             Document doc = new Document();
             doc.add(new StringField("documentId", laTimesDocument.getDocNo(), Field.Store.YES));
