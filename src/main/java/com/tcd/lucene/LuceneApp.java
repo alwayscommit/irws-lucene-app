@@ -2,6 +2,7 @@ package com.tcd.lucene;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class LuceneApp {
 			LATimesParser.parse(LATIMES_PATH, laTimesDocList);
 			System.out.println("LATimes Count8 :: " + laTimesDocList.size());
 			LuceneIndexModel.indexLATimes(laTimesDocList, luceneDocuments);
-		} catch (IOException e) {
+		} catch (IOException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 			e.printStackTrace();
 		}
 

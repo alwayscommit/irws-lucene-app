@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class FBISDocument {
+public class FBISDocument extends docModel {
 
 	private String doc;
 	private String docNo;
@@ -200,5 +200,4 @@ public class FBISDocument {
 	public void setText(String text) {
 		this.text = text;
 	}
-
 }

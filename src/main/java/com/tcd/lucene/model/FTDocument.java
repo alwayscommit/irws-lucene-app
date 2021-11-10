@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class FTDocument {
+public class FTDocument extends docModel {
 
 	private String xx;
 	private String byLine;
