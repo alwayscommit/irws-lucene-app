@@ -6,7 +6,7 @@ public class FR94Document extends docModel {
 	private String signJob;
 	private String usBureau;
 	private String footname;
-	private String text;
+	private String text = "";
 	private String table;
 	private String footnote;
 	// import is a keyword in Java, can't use it as a variable name
@@ -27,7 +27,7 @@ public class FR94Document extends docModel {
 	private String date;
 	private String action;
 	private String address;
-	private String docno;
+	private String docno = "";
 
 	public String getCfrNo() {
 		return cfrNo;

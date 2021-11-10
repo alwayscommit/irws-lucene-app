@@ -5,13 +5,11 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class LuceneIndexModel {
 
-    public static void indexFBIS(List<FBISDocument> fbisDocuments, List<Document> luceneDocuments) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+    public static void indexFBIS(List<FBISDocument> fbisDocuments, List<Document> luceneDocuments) throws IllegalAccessException{
         for(FBISDocument fbisDocument : fbisDocuments){
             if(fbisDocument.isEmpty())
                 continue;
@@ -22,7 +20,7 @@ public class LuceneIndexModel {
         }
     }
 
-    public static void indexFR94(List<FR94Document> fr94Documents, List<Document> luceneDocuments) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+    public static void indexFR94(List<FR94Document> fr94Documents, List<Document> luceneDocuments) throws IllegalAccessException {
         for(FR94Document fr94Document : fr94Documents){
             if(fr94Document.isEmpty())
                 continue;

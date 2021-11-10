@@ -7,7 +7,7 @@ public class LATimesDocument extends docModel {
 	private String rowrule;
 	private String tableCell;
 	private String graphic;
-	private String text;
+	private String text = "";
 	private String tableRow;
 	private String dateline;
 	private String docid;
@@ -18,7 +18,7 @@ public class LATimesDocument extends docModel {
 	private String doc;
 	private String subject;
 	private String correctionDate;
-	private String docNo;
+	private String docNo = "";
 	private String headline;
 	private String cellRule;
 	private String type;
