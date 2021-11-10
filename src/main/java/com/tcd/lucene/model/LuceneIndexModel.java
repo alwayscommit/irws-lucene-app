@@ -1,6 +1,5 @@
 package com.tcd.lucene.model;
 
-import com.tcd.lucene.util.ParsingUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -16,6 +15,9 @@ public class LuceneIndexModel {
             Document doc = new Document();
             doc.add(new StringField("documentId", fbisDocument.getDocNo(), Field.Store.YES));
             doc.add(new TextField("body", fbisDocument.getText(), Field.Store.YES));
+            doc.add(new TextField("headers", fbisDocument.getAbs() + "\n" + fbisDocument.getF() +
+                    "\n" + fbisDocument.getH3() + "\n" + fbisDocument.getHt() + "\n" + fbisDocument.getH4() +
+                    "\n" + fbisDocument.getPhrase(), Field.Store.YES));
             luceneDocuments.add(doc);
         }
     }
@@ -26,7 +28,9 @@ public class LuceneIndexModel {
                 continue;
             Document doc = new Document();
             doc.add(new StringField("documentId", fr94Document.getDocno(), Field.Store.YES));
-            doc.add(new TextField("body", fr94Document.getText(), Field.Store.YES));
+            doc.add(new TextField("body", fr94Document.getText() + "\n" + fr94Document.getSupplem(), Field.Store.YES));
+            doc.add(new TextField("headers", fr94Document.getFootnote() + "\n" + fr94Document.getUsDept() +
+                    "\n" + fr94Document.getSummary(),Field.Store.YES));
             luceneDocuments.add(doc);
         }
     }
@@ -38,6 +42,8 @@ public class LuceneIndexModel {
             Document doc = new Document();
             doc.add(new StringField("documentId", ftDocument.getDocno(), Field.Store.YES));
             doc.add(new TextField("body", ftDocument.getText(), Field.Store.YES));
+            doc.add(new TextField("headers", ftDocument.getHeadline() + "\n" + ftDocument.getTp() +
+                    "\n" + ftDocument.getPub() + "\n" + ftDocument.getXx(), Field.Store.YES));
             luceneDocuments.add(doc);
         }
     }
@@ -48,10 +54,12 @@ public class LuceneIndexModel {
                 continue;
             Document doc = new Document();
             doc.add(new StringField("documentId", laTimesDocument.getDocNo(), Field.Store.YES));
-            doc.add(new TextField("body", laTimesDocument.getText(), Field.Store.YES));
+            doc.add(new TextField("body", laTimesDocument.getText() + "\n" +
+                    laTimesDocument.getCorrection(), Field.Store.YES));
+            doc.add(new TextField("headers", laTimesDocument.getHeadline() + "\n" +
+                    laTimesDocument.getSubject() + "\n" + laTimesDocument.getDateline(), Field.Store.YES));
             luceneDocuments.add(doc);
         }
-
     }
 
 }
