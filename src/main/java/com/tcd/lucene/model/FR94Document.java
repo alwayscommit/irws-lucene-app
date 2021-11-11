@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class FR94Document {
+public class FR94Document extends DocumentBase {
 
 	private String cfrNo;
 	private String signJob;

@@ -102,4 +102,9 @@ public interface Constants {
 		final static String NARR = "narr";
 	}
 
+	interface LuceneDocument {
+		final static String BODY = "body";
+		final static String HEADERS = "headers";
+		final static String DOCUMENT_ID = "docId";
+	}
 }

@@ -12,14 +12,13 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 public abstract class Indexer {
-	public static String INDEX_DIRECTORY = "../index";
-	public Analyzer analyzer;
+	private static String INDEX_DIRECTORY = "../index";
+	protected Analyzer analyzer;
 	
 	public Indexer() {
 		this.configureAnalyser();
 	}
 
-	
 	// Method to processIndex
     public void processIndex( List<Document> documents) throws IOException {
 

@@ -49,32 +49,8 @@ public class FTParser {
 		case Constants.FT.XX:
 			ftDoc.setXx(element.ownText());
 			break;
-		case Constants.FT.BYLINE:
-			ftDoc.setByLine(element.ownText());
-			break;
-		case Constants.FT.IN:
-			ftDoc.setIn(element.ownText());
-			break;
 		case Constants.FT.TEXT:
-			ftDoc.setText(element.ownText());
-			break;
-		case Constants.FT.PAGE:
-			ftDoc.setText(element.ownText());
-			break;
-		case Constants.FT.CN:
-			ftDoc.setText(element.ownText());
-			break;
-		case Constants.FT.CO:
-			ftDoc.setText(element.ownText());
-			break;
-		case Constants.FT.DATELINE:
-			ftDoc.setText(element.ownText());
-			break;
-		case Constants.FT.DATE:
-			ftDoc.setDate(element.ownText());
-			break;
-		case Constants.FT.PROFILE:
-			ftDoc.setProfile(element.ownText());
+			ftDoc.setText(element.text());
 			break;
 		case Constants.FT.PE:
 			ftDoc.setPe(element.ownText());
@@ -86,7 +62,7 @@ public class FTParser {
 			ftDoc.setDocno(element.ownText());
 			break;
 		case Constants.FT.HEADLINE:
-			ftDoc.setHeadline(element.ownText());
+			ftDoc.setHeadline(element.text());
 			break;
 		case Constants.FT.PUB:
 			ftDoc.setPub(element.ownText());

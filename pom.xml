@@ -106,7 +106,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.tcd.cranfield.CranfieldApp</mainClass>
+									<mainClass>com.tcd.lucene.LuceneApp</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

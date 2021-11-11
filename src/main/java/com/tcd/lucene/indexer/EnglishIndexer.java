@@ -1,4 +1,5 @@
 package com.tcd.lucene.indexer;
+
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import com.tcd.lucene.util.IndexingUtils;
 
@@ -9,8 +10,7 @@ public class EnglishIndexer extends Indexer {
 	}
 	public void configureAnalyser() {
 	  	System.out.println("Processing English Analyser");
-	  	IndexingUtils utils = new IndexingUtils();
-		this.analyzer = new EnglishAnalyzer(utils.getAllStopWords());
+		this.analyzer = new EnglishAnalyzer(IndexingUtils.getAllStopWords());
 	}
 
 }

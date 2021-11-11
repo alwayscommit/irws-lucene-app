@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class LATimesDocument {
+public class LATimesDocument extends DocumentBase {
 
 	private String byline;
 	private String length;
