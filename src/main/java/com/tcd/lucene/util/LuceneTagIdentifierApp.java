@@ -28,10 +28,10 @@ public class LuceneTagIdentifierApp {
 		try {
 			List<String> datasetPathList = Arrays.asList(FBIS_PATH, FR94_PATH, FT_PATH, LATIMES_PATH);
 			for (String dataPath : datasetPathList) {
-				File fbisDirectory = new File(dataPath);
+				File documentsDirectory = new File(dataPath);
 				Set<String> tagList = new HashSet<String>();
-				getTags(fbisDirectory.listFiles(), tagList);
-				System.out.println(fbisDirectory.getName() + " :: " + tagList);
+				getTags(documentsDirectory.listFiles(), tagList);
+				System.out.println(documentsDirectory.getName() + " :: " + tagList);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -39,8 +39,8 @@ public class LuceneTagIdentifierApp {
 
 	}
 
-	private static void getTags(File[] fbisDirectory, Set<String> tagList) throws IOException {
-		for (File file : fbisDirectory) {
+	private static void getTags(File[] documentsDirectory, Set<String> tagList) throws IOException {
+		for (File file : documentsDirectory) {
 			if (file.isDirectory()) {
 				getTags(file.listFiles(), tagList);
 			} else {

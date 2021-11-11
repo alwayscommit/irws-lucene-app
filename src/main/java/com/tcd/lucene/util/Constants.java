@@ -94,4 +94,9 @@ public interface Constants {
 
 	}
 
+	interface LuceneDocument {
+		final static String BODY = "body";
+		final static String HEADERS = "headers";
+		final static String DOCUMENT_ID = "docId";
+	}
 }

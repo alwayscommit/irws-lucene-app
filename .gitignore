@@ -30,3 +30,13 @@ target
 .settings/
 .*
 
+# IntelliJ config
+.idea
+
+# Given documents
+Assignment Two/**
+topics
+
+# ignore index file for now
+index
+

@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class FBISDocument {
+public class FBISDocument extends DocumentBase {
 	
 //	F,H3,H4, ABS, HT, PHRASE -> HEADER
 //	TEXT, -> BODY
@@ -87,5 +87,4 @@ public class FBISDocument {
 	public void setText(String text) {
 		this.text = text;
 	}
-
 }

@@ -1,13 +1,13 @@
 package com.tcd.lucene.model;
 
-public class LATimesDocument {
+public class LATimesDocument extends DocumentBase {
 
 	private String byline;
 	private String length;
 	private String rowrule;
 	private String tableCell;
 	private String graphic;
-	private String text;
+	private String text = "";
 	private String tableRow;
 	private String dateline;
 	private String docid;
@@ -18,7 +18,7 @@ public class LATimesDocument {
 	private String doc;
 	private String subject;
 	private String correctionDate;
-	private String docNo;
+	private String docNo = "";
 	private String headline;
 	private String cellRule;
 	private String type;
