@@ -1,4 +1,4 @@
-package com.tcd.lucene.indexer;
+package com.tcd.lucene.index;
 
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import com.tcd.lucene.util.IndexingUtils;

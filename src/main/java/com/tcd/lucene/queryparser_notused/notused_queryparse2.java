@@ -1,4 +1,4 @@
-package com.tcd.lucene.queryparser;
+package com.tcd.lucene.queryparser_notused;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

@@ -12,16 +12,16 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.search.similarities.Similarity;
 
-import com.tcd.lucene.indexer.EnglishIndexer;
+import com.tcd.lucene.index.EnglishIndexer;
 import com.tcd.lucene.model.FBISDocument;
 import com.tcd.lucene.model.FR94Document;
 import com.tcd.lucene.model.FTDocument;
 import com.tcd.lucene.model.LATimesDocument;
 import com.tcd.lucene.model.LuceneDocumentConverter;
-import com.tcd.lucene.parser.FBISParser;
-import com.tcd.lucene.parser.FR94Parser;
-import com.tcd.lucene.parser.FTParser;
-import com.tcd.lucene.parser.LATimesParser;
+import com.tcd.lucene.parse.FBISParser;
+import com.tcd.lucene.parse.FR94Parser;
+import com.tcd.lucene.parse.FTParser;
+import com.tcd.lucene.parse.LATimesParser;
 import com.tcd.lucene.util.Utils;
 
 public class LuceneApp {

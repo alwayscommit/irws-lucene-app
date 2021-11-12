@@ -1,4 +1,4 @@
-package com.tcd.lucene.indexer;
+package com.tcd.lucene.index;
 
 import java.io.IOException;
 import java.nio.file.Paths;

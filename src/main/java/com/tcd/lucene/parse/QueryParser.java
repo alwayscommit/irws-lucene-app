@@ -1,4 +1,4 @@
-package com.tcd.lucene.queryparser;
+package com.tcd.lucene.parse;
 
 import java.io.File;
 import java.io.FileInputStream;
