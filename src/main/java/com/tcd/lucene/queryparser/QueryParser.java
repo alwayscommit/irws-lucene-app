@@ -15,6 +15,7 @@ import com.tcd.lucene.util.Constants;
 import com.tcd.lucene.util.ParsingUtils;
 
 public class QueryParser {
+
 	public static void parseNestedFolders(File[] files, List<QueryModel> queries) throws IOException {
 		for (File file : files) {
 			if (ParsingUtils.ignoreFile(file)) {
