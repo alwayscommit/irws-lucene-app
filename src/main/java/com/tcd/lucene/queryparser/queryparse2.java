@@ -1,5 +1,4 @@
-package G8;
-
+package com.tcd.lucene.queryparser;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

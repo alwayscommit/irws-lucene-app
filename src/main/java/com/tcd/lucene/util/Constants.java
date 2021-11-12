@@ -94,6 +94,14 @@ public interface Constants {
 		final static String SECTION = "SECTION";
 
 	}
+	
+	interface Query {
+		final static String TOP = "top";
+		final static String NUM = "num";
+		final static String TITLE = "title";
+		final static String DESC = "desc";
+		final static String NARR = "narr";
+	}
 
 	interface LuceneDocument {
 		final static String BODY = "body";

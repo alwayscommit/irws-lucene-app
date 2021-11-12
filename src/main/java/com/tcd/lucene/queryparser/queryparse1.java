@@ -1,4 +1,4 @@
-package G8;
+package com.tcd.lucene.queryparser;
 
 /*
 
