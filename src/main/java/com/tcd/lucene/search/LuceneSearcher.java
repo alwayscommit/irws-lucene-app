@@ -68,6 +68,7 @@ public class LuceneSearcher {
 			ScoreDoc[] scoreDocs = this.indexSearcher.search(query, MAX_RESULTS).scoreDocs;
 			this.addScoreToOutputFile(scoreDocs, pw);
 		}
+		System.out.println("Output file generated!");
 		fw.close();
 		pw.close();
 	}
@@ -83,7 +84,6 @@ public class LuceneSearcher {
 			String queryOutput = i  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
 			pw.println(queryOutput);
 //			System.out.println(queryOutput);
-			System.out.println("Output file generated!");
 		}
 	}
 		
