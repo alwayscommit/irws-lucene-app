@@ -21,6 +21,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
 import com.tcd.lucene.model.DocumentQuery;
+import com.tcd.lucene.util.Constants.LuceneDocument;
 
 /**
  * This class is responsible for setting up the search configuration as well as perform the search
@@ -79,7 +80,7 @@ public class LuceneSearcher {
 		for (int i = 0; i < hits.length; i++)
 		{
 			Document hitDoc = this.indexSearcher.doc(hits[i].doc);
-			String queryOutput = i  + " Q0 " + hitDoc.get("index") + " 1 " + hits[i].score + " STANDARD";
+			String queryOutput = i  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
 			pw.println(queryOutput);
 			System.out.println(queryOutput);
 		}

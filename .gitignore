@@ -40,6 +40,6 @@ topics
 # ignore index file for now
 index
 
-#ignore DS Store
+# ignore DS Store
 **/.DS_Store
 

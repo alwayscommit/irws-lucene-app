@@ -4,14 +4,14 @@ public class FTDocument {
 	
 //	[TEXT, DOC, DOCNO, HEADLINE, , PE, PUB, TP, XX]
 
-	private String xx;
-	private String text;
-	private String pe;
-	private String doc;
-	private String docno;
-	private String headline;
-	private String pub;
-	private String tp;
+	private String xx = "";
+	private String text = "";
+	private String pe = "";
+	private String doc = "";
+	private String docno = "";
+	private String headline = "";
+	private String pub = "";
+	private String tp = "";
 
 	public String getXx() {
 		return xx;

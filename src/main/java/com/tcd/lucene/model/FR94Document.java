@@ -4,13 +4,13 @@ public class FR94Document {
 
 	// [TEXT, FOOTNOTE, SUMMARY, DOC, DOCNO, USDEPT, SUPPLEM]
 
-	private String text;
-	private String footnote;
-	private String summary;
-	private String doc;
-	private String usDept;
-	private String supplem;
-	private String docno;
+	private String text = "";
+	private String footnote = "";
+	private String summary = "";
+	private String doc = "";
+	private String usDept = "";
+	private String supplem = "";
+	private String docno = "";
 
 	public String getText() {
 		return text;

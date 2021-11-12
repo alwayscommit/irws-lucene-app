@@ -1,10 +1,10 @@
 package com.tcd.lucene.model;
 
 public class DocumentQuery {
-	private String queryNumber;
-	private String queryTitle;
-	private String description;
-	private String narrative;
+	private String queryNumber = "";
+	private String queryTitle = "";
+	private String description = "";
+	private String narrative = "";
 	
 	public String getQueryNumber() {
 		return queryNumber;

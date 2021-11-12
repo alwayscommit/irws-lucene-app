@@ -7,14 +7,14 @@ public class FBISDocument {
 //	DOC NO, -> DOC NO
 
 	private String doc;
-	private String docNo;
-	private String phrase;
-	private String abs;
-	private String ht;
-	private String h3;
-	private String h4;
-	private String f;
-	private String text;
+	private String docNo = "";
+	private String phrase = "";
+	private String abs = "";
+	private String ht = "";
+	private String h3 = "";
+	private String h4 = "";
+	private String f = "";
+	private String text = "";
 
 	public String getDoc() {
 		return doc;
