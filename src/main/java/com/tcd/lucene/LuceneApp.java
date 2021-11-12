@@ -42,7 +42,6 @@ public class LuceneApp {
 	private static final String INDEX_DIRECTORY = "../index";
 
 	private static Properties properties = null;
-	private static IndexWriterConfig config = null;
 
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 
@@ -54,8 +53,6 @@ public class LuceneApp {
 			Indexer indexer = new EnglishIndexer();
 			Similarity similarity = new ClassicSimilarity(); 
 			
-			config = getIndexWriterConfig(indexer, similarity);
-
 			List<Document> fbisDocs = parseFBIS();
 			indexer.processIndex(fbisDocs, INDEX_DIRECTORY);
 			fbisDocs.clear();
@@ -76,13 +73,10 @@ public class LuceneApp {
 
 			List<DocumentQuery> queries = new ArrayList<DocumentQuery>();
 			List<DocumentQuery> queryList = QueryParser.parse(properties.getProperty(QUERY_FILE_PATH), queries);
-			
-			
 
 			// Search
 			LuceneSearcher luceneSearcher = new LuceneSearcher(indexDirectory, similarity);
 			luceneSearcher.searchAndGenerateOutput(queryList, indexer.getAnalyzer());
-
 
 		} catch (IOException | IllegalAccessException | URISyntaxException e) {
 			e.printStackTrace();
