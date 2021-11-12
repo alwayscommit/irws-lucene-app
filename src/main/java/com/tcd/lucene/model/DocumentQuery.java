@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class QueryModel {
+public class DocumentQuery {
 	private String queryNumber;
 	private String queryTitle;
 	private String description;
