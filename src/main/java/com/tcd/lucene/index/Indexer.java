@@ -22,7 +22,7 @@ public abstract class Indexer {
 
 	// Method to processIndex
     public void processIndex( List<Document> documents, String indexDirectory) throws IOException {
-
+    	System.out.println("Indexing with :: " + analyzer.getClass().getSimpleName());
 		// Open the directory that contains the search index
 		Directory directory = FSDirectory.open(Paths.get(indexDirectory));
 
@@ -41,4 +41,8 @@ public abstract class Indexer {
     
     // Method to be overwritten to configure analyzers
     public abstract void configureAnalyser() throws IOException, URISyntaxException;
+    
+    public Analyzer getAnalyzer() {
+    	return analyzer;
+    }
 }

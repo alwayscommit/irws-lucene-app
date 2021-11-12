@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class Utils {
 
-	public Properties getProperties(String configPath) throws IOException {
+	public static Properties getProperties(String configPath) throws IOException {
 		Properties properties = new Properties();
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(configPath);
+		InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream(configPath);
 		properties.load(inputStream);
 		return properties;
 	}
