@@ -1,17 +1,11 @@
 package com.tcd.lucene.model;
 
-public class FTDocument extends DocumentBase {
+public class FTDocument {
+	
+//	[TEXT, DOC, DOCNO, HEADLINE, , PE, PUB, TP, XX]
 
 	private String xx;
-	private String byLine;
-	private String in;
 	private String text;
-	private String page;
-	private String cn;
-	private String co;
-	private String dateLine;
-	private String date;
-	private String profile;
 	private String pe;
 	private String doc;
 	private String docno;
@@ -27,76 +21,12 @@ public class FTDocument extends DocumentBase {
 		this.xx = xx;
 	}
 
-	public String getByLine() {
-		return byLine;
-	}
-
-	public void setByLine(String byLine) {
-		this.byLine = byLine;
-	}
-
-	public String getIn() {
-		return in;
-	}
-
-	public void setIn(String in) {
-		this.in = in;
-	}
-
 	public String getText() {
 		return text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public String getPage() {
-		return page;
-	}
-
-	public void setPage(String page) {
-		this.page = page;
-	}
-
-	public String getCn() {
-		return cn;
-	}
-
-	public void setCn(String cn) {
-		this.cn = cn;
-	}
-
-	public String getCo() {
-		return co;
-	}
-
-	public void setCo(String co) {
-		this.co = co;
-	}
-
-	public String getDateLine() {
-		return dateLine;
-	}
-
-	public void setDateLine(String dateLine) {
-		this.dateLine = dateLine;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getProfile() {
-		return profile;
-	}
-
-	public void setProfile(String profile) {
-		this.profile = profile;
 	}
 
 	public String getPe() {

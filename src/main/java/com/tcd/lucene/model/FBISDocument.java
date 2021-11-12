@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class FBISDocument extends DocumentBase {
+public class FBISDocument {
 	
 //	F,H3,H4, ABS, HT, PHRASE -> HEADER
 //	TEXT, -> BODY

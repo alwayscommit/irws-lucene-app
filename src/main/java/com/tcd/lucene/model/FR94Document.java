@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class FR94Document extends DocumentBase {
+public class FR94Document {
 
 	// [TEXT, FOOTNOTE, SUMMARY, DOC, DOCNO, USDEPT, SUPPLEM]
 

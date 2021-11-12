@@ -1,6 +1,6 @@
 package com.tcd.lucene.model;
 
-public class LATimesDocument extends DocumentBase {
+public class LATimesDocument {
 	
 	//Headline, subject, dateline, Text, correction
 
