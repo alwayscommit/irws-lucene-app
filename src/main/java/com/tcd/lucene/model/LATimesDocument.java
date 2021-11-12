@@ -4,13 +4,13 @@ public class LATimesDocument {
 	
 	//Headline, subject, dateline, Text, correction
 
-	private String text;
-	private String dateline;
-	private String docid;
-	private String correction;
-	private String subject;
-	private String docNo;
-	private String headline;
+	private String text="";
+	private String dateline="";
+	private String docid="";
+	private String correction="";
+	private String subject="";
+	private String docNo="";
+	private String headline="";
 
 	public String getText() {
 		return text;
