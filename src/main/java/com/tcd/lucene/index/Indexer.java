@@ -1,6 +1,7 @@
 package com.tcd.lucene.index;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public abstract class Indexer {
 	
 	protected Analyzer analyzer;
 	
-	public Indexer() {
+	public Indexer() throws IOException, URISyntaxException {
 		this.configureAnalyser();
 	}
 
@@ -39,5 +40,5 @@ public abstract class Indexer {
     }
     
     // Method to be overwritten to configure analyzers
-    public abstract void configureAnalyser();
+    public abstract void configureAnalyser() throws IOException, URISyntaxException;
 }

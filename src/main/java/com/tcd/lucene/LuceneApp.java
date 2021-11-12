@@ -2,6 +2,7 @@ package com.tcd.lucene;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -80,7 +81,7 @@ public class LuceneApp {
 
 			System.out.println("done");
 
-		} catch (IOException | IllegalAccessException e) {
+		} catch (IOException | IllegalAccessException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}
@@ -93,7 +94,7 @@ public class LuceneApp {
 		folder.mkdir();
 	}
 
-	public static void indexDocs(List<Document> luceneDocuments) throws IOException {
+	public static void indexDocs(List<Document> luceneDocuments) throws IOException, URISyntaxException {
 		// StandardIndexer indexer = new StandardIndexer();
 		EnglishIndexer indexer = new EnglishIndexer();
 		System.out.println("Indexing using :: " + indexer.getClass().getSimpleName());
