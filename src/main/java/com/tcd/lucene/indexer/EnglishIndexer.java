@@ -8,8 +8,8 @@ public class EnglishIndexer extends Indexer {
 	public EnglishIndexer() {
 		super();
 	}
+	
 	public void configureAnalyser() {
-	  	System.out.println("Processing English Analyser");
 		this.analyzer = new EnglishAnalyzer(IndexingUtils.getAllStopWords());
 	}
 

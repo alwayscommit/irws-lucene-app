@@ -5,7 +5,7 @@ public class FTDocument extends DocumentBase {
 	private String xx;
 	private String byLine;
 	private String in;
-	private String text = "";
+	private String text;
 	private String page;
 	private String cn;
 	private String co;
@@ -14,7 +14,7 @@ public class FTDocument extends DocumentBase {
 	private String profile;
 	private String pe;
 	private String doc;
-	private String docno = "";
+	private String docno;
 	private String headline;
 	private String pub;
 	private String tp;

@@ -12,7 +12,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 public abstract class Indexer {
-	private static String INDEX_DIRECTORY = "../index";
+	
 	protected Analyzer analyzer;
 	
 	public Indexer() {
@@ -20,16 +20,15 @@ public abstract class Indexer {
 	}
 
 	// Method to processIndex
-    public void processIndex( List<Document> documents) throws IOException {
+    public void processIndex( List<Document> documents, String indexDirectory) throws IOException {
 
 		// Open the directory that contains the search index
-		Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
+		Directory directory = FSDirectory.open(Paths.get(indexDirectory));
 
 		// Set up an index writer to add process and save documents to the index
 		IndexWriterConfig config = new IndexWriterConfig(this.analyzer);
-		config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+		config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 		IndexWriter iwriter = new IndexWriter(directory, config);
-			
 
 		// Write all the documents in the linked list to the search index
 		iwriter.addDocuments(documents);

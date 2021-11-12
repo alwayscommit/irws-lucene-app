@@ -13,11 +13,11 @@ public class LuceneDocumentConverter {
 
 	private static final String LINE_BREAK = "\n";
 
-	public static void indexFBIS(List<FBISDocument> fbisDocuments, List<Document> luceneDocuments) throws IllegalAccessException {
+	public static void convertFBIS(List<FBISDocument> fbisDocuments, List<Document> luceneDocuments) throws IllegalAccessException {
 		for (FBISDocument fbisDocument : fbisDocuments) {
-			if (fbisDocument.isEmpty()) {
+			/*if (fbisDocument.isEmpty()) {
 				continue;
-			}
+			}*/
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, fbisDocument.getDocNo(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.BODY, fbisDocument.getText(), Field.Store.YES));
@@ -27,11 +27,11 @@ public class LuceneDocumentConverter {
 		}
 	}
 
-	public static void indexFR94(List<FR94Document> fr94Documents, List<Document> luceneDocuments) throws IllegalAccessException {
+	public static void convertFR94(List<FR94Document> fr94Documents, List<Document> luceneDocuments) throws IllegalAccessException {
 		for (FR94Document fr94Document : fr94Documents) {
-			if (fr94Document.isEmpty()) {
+			/*if (fr94Document.isEmpty()) {
 				continue;
-			}
+			}*/
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, fr94Document.getDocno(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.BODY, fr94Document.getText() + LINE_BREAK + fr94Document.getSupplem(), Field.Store.YES));
@@ -40,25 +40,25 @@ public class LuceneDocumentConverter {
 		}
 	}
 
-	public static void indexFT(List<FTDocument> ftDocuments, List<Document> luceneDocuments) throws IllegalAccessException {
+	public static void convertFT(List<FTDocument> ftDocuments, List<Document> luceneDocuments) throws IllegalAccessException {
 		for (FTDocument ftDocument : ftDocuments) {
-			if (ftDocument.isEmpty()) {
+			/*if (ftDocument.isEmpty()) {
 				continue;
-			}
+			}*/
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, ftDocument.getDocno(), Field.Store.YES));
-			doc.add(new TextField(Constants.LuceneDocument.BODY, ftDocument.getText(), Field.Store.YES));
+			doc.add(new TextField(Constants.LuceneDocument.BODY, ftDocument.getText() != null ? ftDocument.getText() : "", Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.HEADERS, ftDocument.getHeadline() + LINE_BREAK + ftDocument.getTp() + LINE_BREAK + ftDocument.getPub() + LINE_BREAK + ftDocument.getXx(),
 					Field.Store.YES));
 			luceneDocuments.add(doc);
 		}
 	}
 
-	public static void indexLATimes(List<LATimesDocument> laTimesDocuments, List<Document> luceneDocuments) throws IllegalAccessException {
+	public static void convertLATimes(List<LATimesDocument> laTimesDocuments, List<Document> luceneDocuments) throws IllegalAccessException {
 		for (LATimesDocument laTimesDocument : laTimesDocuments) {
-			if (laTimesDocument.isEmpty()) {
+			/*if (laTimesDocument.isEmpty()) {
 				continue;
-			}
+			}*/
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, laTimesDocument.getDocNo(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.BODY, laTimesDocument.getText() + LINE_BREAK + laTimesDocument.getCorrection(), Field.Store.YES));

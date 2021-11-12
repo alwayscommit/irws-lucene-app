@@ -47,6 +47,7 @@ public interface Constants {
 		final static String FRFILING = "FRFILING";
 		final static String BILLING = "BILLING";
 		final static String TABLE = "TABLE";
+		final static String FOOTNOTE = "FOOTNOTE";
 	}
 
 	interface FT {

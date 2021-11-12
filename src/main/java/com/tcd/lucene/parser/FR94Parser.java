@@ -49,59 +49,20 @@ public class FR94Parser {
 		case Constants.FR94.DOCNO:
 			fr94Doc.setDocno(element.ownText());
 			break;
-		case Constants.FR94.PARENT:
-			fr94Doc.setParent(element.ownText());
-			break;
 		case Constants.FR94.TEXT:
 			fr94Doc.setText(element.text());
 			break;
 		case Constants.FR94.USDEPT:
 			fr94Doc.setText(element.ownText());
 			break;
-		case Constants.FR94.USBUREAU:
-			fr94Doc.setUsBureau(element.ownText());
-			break;
-		case Constants.FR94.CFRNO:
-			fr94Doc.setCfrNo(element.ownText());
-			break;
-		case Constants.FR94.RINDOCK:
-			fr94Doc.setRindock(element.ownText());
-			break;
-		case Constants.FR94.AGENCY:
-			fr94Doc.setAgency(element.ownText());
-			break;
-		case Constants.FR94.ACTION:
-			fr94Doc.setAction(element.ownText());
-			break;
 		case Constants.FR94.SUMMARY:
 			fr94Doc.setSummary(element.ownText());
-			break;
-		case Constants.FR94.DATE:
-			fr94Doc.setDate(element.ownText());
-			break;
-		case Constants.FR94.ADDRESS:
-			fr94Doc.setAddress(element.ownText());
-			break;
-		case Constants.FR94.FURTHER:
-			fr94Doc.setFurther(element.ownText());
 			break;
 		case Constants.FR94.SUPPLEM:
 			fr94Doc.setSupplem(element.ownText());
 			break;
-		case Constants.FR94.SIGNER:
-			fr94Doc.setSigner(element.ownText());
-			break;
-		case Constants.FR94.SIGNJOB:
-			fr94Doc.setSignJob(element.ownText());
-			break;
-		case Constants.FR94.FRFILING:
-			fr94Doc.setFrFiling(element.ownText());
-			break;
-		case Constants.FR94.BILLING:
-			fr94Doc.setBilling(element.ownText());
-			break;
-		case Constants.FR94.TABLE:
-			fr94Doc.setTable(element.ownText());
+		case Constants.FR94.FOOTNOTE:
+			fr94Doc.setFootnote(element.ownText());
 			break;
 		}
 	}

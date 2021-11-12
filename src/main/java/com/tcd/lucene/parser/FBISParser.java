@@ -55,9 +55,6 @@ public class FBISParser {
 		case Constants.FBIS.TEXT:
 			fbisDoc.setText(element.text());
 			break;
-//		case Constants.FBIS.TXT5:
-//			fbisDoc.setTxt5(element.ownText());
-//			break;
 		case Constants.FBIS.F:
 			String f = fbisDoc.getF() == null ? element.ownText() : (fbisDoc.getF() + "\n" + element.ownText());
 			fbisDoc.setF(f);

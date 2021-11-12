@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.search.similarities.Similarity;
 
 import com.tcd.lucene.indexer.EnglishIndexer;
 import com.tcd.lucene.model.FBISDocument;
@@ -22,10 +26,12 @@ import com.tcd.lucene.util.Utils;
 
 public class LuceneApp {
 
-	private static final String FBIS_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fbis\\";
-	private static final String FR94_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\fr94\\";
-	private static final String FT_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\ft\\";
-	private static final String LATIMES_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\latimes\\";
+	private static final String FBIS_PATH = "FBIS_PATH";
+	private static final String FR94_PATH = "FR94_PATH";
+	private static final String FT_PATH = "FT_PATH";
+	private static final String LATIMES_PATH = "LATIMES_PATH";
+
+	private static final String INDEX_DIRECTORY = "../index";
 
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 	private static List<FBISDocument> fbisDocList = new ArrayList<FBISDocument>();
@@ -38,33 +44,60 @@ public class LuceneApp {
 
 	public static void main(String[] args) throws IOException {
 		try {
-			
+
+			createOutputDirectory();
+
 			Utils util = new Utils();
 			Properties properties = util.getProperties(args[0]);
-			
-			System.out.println(properties.get("hello"));
 
-			FBISParser.parse(FBIS_PATH, fbisDocList);
-			LuceneDocumentConverter.indexFBIS(fbisDocList, luceneDocuments);
+			System.out.println("Reading FBIS Documents :: " + properties.getProperty(FBIS_PATH));
+			FBISParser.parse(properties.getProperty(FBIS_PATH), fbisDocList);
+			LuceneDocumentConverter.convertFBIS(fbisDocList, luceneDocuments);
+			indexDocs(luceneDocuments);
+			fbisDocList.clear();
+			luceneDocuments.clear();
 
-			FR94Parser.parseNestedFolders(new File(FR94_PATH).listFiles(), fr94DocList);
-			LuceneDocumentConverter.indexFR94(fr94DocList, luceneDocuments);
+			System.out.println("Reading FR94 Documents :: " + properties.getProperty(FR94_PATH));
+			FR94Parser.parseNestedFolders(new File(properties.getProperty(FR94_PATH)).listFiles(), fr94DocList);
+			LuceneDocumentConverter.convertFR94(fr94DocList, luceneDocuments);
+			indexDocs(luceneDocuments);
+			fr94DocList.clear();
+			luceneDocuments.clear();
 
-			FTParser.parseNestedFolders(new File(FT_PATH).listFiles(), ftDocList);
-			LuceneDocumentConverter.indexFT(ftDocList, luceneDocuments);
+			System.out.println("Reading FT Documents :: " + properties.getProperty(FT_PATH));
+			FTParser.parseNestedFolders(new File(properties.getProperty(FT_PATH)).listFiles(), ftDocList);
+			LuceneDocumentConverter.convertFT(ftDocList, luceneDocuments);
+			indexDocs(luceneDocuments);
+			ftDocList.clear();
+			luceneDocuments.clear();
 
-			LATimesParser.parse(LATIMES_PATH, laTimesDocList);
-			LuceneDocumentConverter.indexLATimes(laTimesDocList, luceneDocuments);
-
-			// StandardIndexer indexer = new StandardIndexer();
-			EnglishIndexer indexer = new EnglishIndexer();
-			indexer.processIndex(luceneDocuments);
+			System.out.println("Reading LA Times Documents:: " + properties.getProperty(LATIMES_PATH));
+			LATimesParser.parse(properties.getProperty(LATIMES_PATH), laTimesDocList);
+			LuceneDocumentConverter.convertLATimes(laTimesDocList, luceneDocuments);
+			indexDocs(luceneDocuments);
+			laTimesDocList.clear();
+			luceneDocuments.clear();
 
 			System.out.println("done");
 
 		} catch (IOException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static void createOutputDirectory() throws IOException {
+		File folder = new File(INDEX_DIRECTORY);
+		if (folder.exists()) {
+			FileUtils.deleteDirectory(folder);
+		}
+		folder.mkdir();
+	}
+
+	public static void indexDocs(List<Document> luceneDocuments) throws IOException {
+		// StandardIndexer indexer = new StandardIndexer();
+		EnglishIndexer indexer = new EnglishIndexer();
+		System.out.println("Indexing using :: " + indexer.getClass().getSimpleName());
+		indexer.processIndex(luceneDocuments, INDEX_DIRECTORY);
 	}
 
 }
