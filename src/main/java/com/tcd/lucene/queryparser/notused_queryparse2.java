@@ -13,8 +13,8 @@ import java.util.List;
 //import java.util.HashMap;
 
 
-public class queryparse2 {
-    public queryparse2() {}
+public class notused_queryparse2 {
+    public notused_queryparse2() {}
 
     public static List<String> stopwords;
     public static void loadStopwords(String stop_dir) throws IOException {
