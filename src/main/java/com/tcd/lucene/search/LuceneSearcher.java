@@ -1,13 +1,11 @@
 package com.tcd.lucene.search;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.event.ListSelectionEvent;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
@@ -17,14 +15,9 @@ import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.queryparser.classic.QueryParser.Operator;
-import org.apache.lucene.queryparser.complexPhrase.ComplexPhraseQueryParser;
-import org.apache.lucene.queryparser.xml.builders.TermQueryBuilder;
-import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
 import com.tcd.lucene.model.DocumentQuery;
@@ -37,31 +30,60 @@ import com.tcd.lucene.model.DocumentQuery;
 public class LuceneSearcher {
 
 	private IndexSearcher indexSearcher;
+	// Limit the number of search results we get
+	private static int MAX_RESULTS = 1000;
+	
+	private static final String OUTPUT_FILE = "../output.txt";
 
 	public LuceneSearcher(Path indexPath, Similarity similarity) throws IOException {
 		System.out.println("Searching documents...");
 		IndexReader indexReader = DirectoryReader.open(FSDirectory.open(indexPath));
-		indexSearcher = new IndexSearcher(indexReader);
-		indexSearcher.setSimilarity(similarity);
+		this.indexSearcher = new IndexSearcher(indexReader);
+		this.indexSearcher.setSimilarity(similarity);
 	}
 
-	public ScoreDoc[] search(DocumentQuery docQuery, Analyzer analyzer) throws IOException, ParseException {
+	/**
+	 * Executes the list of queries and generates output file
+	 * @param queryList
+	 * @param analyzer
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public void searchAndGenerateOutput(List<DocumentQuery> queryList, Analyzer analyzer) throws IOException, ParseException {
+		FileWriter fw = new FileWriter(OUTPUT_FILE);
+	    PrintWriter pw = new PrintWriter(fw);
 		HashMap<String, Float> boosts = new HashMap<String, Float>();
 		// revisit these booster values
-		boosts.put("title", 2f);
+		boosts.put("header", 2f);
 		boosts.put("body", 4.7f);
-
-		MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "title", "author", "body" }, analyzer, boosts);
-		// default
-		parser.setDefaultOperator(Operator.OR);
-		String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getNarrative() + " " + docQuery.getQueryTitle();
-		Query query = parser.parse(QueryParser.escape(queryString));
-
-		ScoreDoc[] scoreDocs = indexSearcher.search(query, 1000).scoreDocs;
-		return scoreDocs;
+		
+		for (DocumentQuery docQuery: queryList) {
+			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "header", "body" }, analyzer, boosts);
+			// default
+			parser.setDefaultOperator(Operator.OR);
+			String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getNarrative();
+			queryString = queryString.trim();
+			Query query = parser.parse(QueryParser.escape(queryString));
+			ScoreDoc[] scoreDocs = this.indexSearcher.search(query, MAX_RESULTS).scoreDocs;
+			this.addScoreToOutputFile(scoreDocs, pw);
+		}
+		fw.close();
+		pw.close();
 	}
+	
+	/*
+	 * Generates output file for the scores
+	 */
 
-	public Document getDocument(Integer docId, ScoreDoc[] scoredDocs) throws IOException {
-		return indexSearcher.doc(scoredDocs[docId].doc);
+	public void addScoreToOutputFile (ScoreDoc[] hits, PrintWriter pw) throws IOException {
+		for (int i = 0; i < hits.length; i++)
+		{
+			Document hitDoc = this.indexSearcher.doc(hits[i].doc);
+			String queryOutput = i  + " Q0 " + hitDoc.get("index") + " 1 " + hits[i].score + " STANDARD";
+			pw.println(queryOutput);
+			System.out.println(queryOutput);
+		}
 	}
+		
+	
 }
