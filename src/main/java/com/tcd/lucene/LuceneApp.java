@@ -1,25 +1,18 @@
 package com.tcd.lucene;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.similarities.BM25Similarity;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 
@@ -47,14 +40,13 @@ public class LuceneApp {
 	private static final String LATIMES_PATH = "LATIMES_PATH";
 	private static final String QUERY_FILE_PATH = "QUERY_FILE_PATH";
 	private static final String INDEX_DIRECTORY = "../index";
-	private static final String OUTPUT_FILE = "../output.txt";
 
 	private static Properties properties = null;
 	private static IndexWriterConfig config = null;
 
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 		try {
 			Path indexDirectory = createIndexDirectory();
 			properties = Utils.getProperties(args[0]);
@@ -84,10 +76,12 @@ public class LuceneApp {
 
 			List<DocumentQuery> queries = new ArrayList<DocumentQuery>();
 			List<DocumentQuery> queryList = QueryParser.parse(properties.getProperty(QUERY_FILE_PATH), queries);
+			
+			
 
 			// Search
 			LuceneSearcher luceneSearcher = new LuceneSearcher(indexDirectory, similarity);
-			List<ScoreDoc> totalScoreDocList = new ArrayList<ScoreDoc>();
+			luceneSearcher.searchAndGenerateOutput(queryList, indexer.getAnalyzer());
 
 
 		} catch (IOException | IllegalAccessException | URISyntaxException e) {
@@ -131,7 +125,7 @@ public class LuceneApp {
 		folder.mkdir();
 		return Paths.get(folder.getAbsolutePath());
 	}
-
+	
 	private static IndexWriterConfig getIndexWriterConfig(Indexer indexer, Similarity similarity) {
 		IndexWriterConfig config = new IndexWriterConfig(indexer.getAnalyzer());
 		config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
