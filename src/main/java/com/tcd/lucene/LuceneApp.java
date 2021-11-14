@@ -119,12 +119,5 @@ public class LuceneApp {
 		folder.mkdir();
 		return Paths.get(folder.getAbsolutePath());
 	}
-	
-	private static IndexWriterConfig getIndexWriterConfig(Indexer indexer, Similarity similarity) {
-		IndexWriterConfig config = new IndexWriterConfig(indexer.getAnalyzer());
-		config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
-		config.setSimilarity(similarity);
-		return config;
-	}
 
 }
