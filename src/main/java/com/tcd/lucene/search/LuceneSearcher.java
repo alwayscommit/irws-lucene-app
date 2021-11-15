@@ -81,7 +81,7 @@ public class LuceneSearcher {
 		for (int i = 0; i < hits.length; i++)
 		{
 			Document hitDoc = this.indexSearcher.doc(hits[i].doc);
-			String queryOutput = queryId  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
+			String queryOutput = queryId.split(" ")[1]  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
 			pw.println(queryOutput);
 //			System.out.println(queryOutput);
 		}
