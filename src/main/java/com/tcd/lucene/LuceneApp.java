@@ -47,29 +47,34 @@ public class LuceneApp {
 
 	public static void main(String[] args) throws IOException, ParseException {
 		try {
-			Path indexDirectory = createIndexDirectory();
+			
 			properties = Utils.getProperties(args[0]);
 			//set the analyzer and similarity
 			Indexer indexer = new EnglishIndexer();
 			Similarity similarity = new ClassicSimilarity(); 
+			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
 			
-			List<Document> fbisDocs = parseFBIS();
-			indexer.processIndex(fbisDocs, INDEX_DIRECTORY);
-			fbisDocs.clear();
-			
-			List<Document> fr94Docs = parseFR94();
-			indexer.processIndex(fr94Docs, INDEX_DIRECTORY);
-			fr94Docs.clear();
-			
-			List<Document> ftDocs = parseFT();
-			indexer.processIndex(ftDocs, INDEX_DIRECTORY);
-			ftDocs.clear();
-			
-			List<Document> laTimesDocs = parseLATimes();
-			indexer.processIndex(laTimesDocs, INDEX_DIRECTORY);
-			laTimesDocs.clear();
-			
-			System.out.println("Indexing done...");
+			if(!indexExists(indexDirectory)) {
+				indexDirectory = createIndexDirectory(indexDirectory);
+				
+				List<Document> fbisDocs = parseFBIS();
+				indexer.processIndex(fbisDocs, indexDirectory);
+				fbisDocs.clear();
+				
+				List<Document> fr94Docs = parseFR94();
+				indexer.processIndex(fr94Docs, indexDirectory);
+				fr94Docs.clear();
+				
+				List<Document> ftDocs = parseFT();
+				indexer.processIndex(ftDocs, indexDirectory);
+				ftDocs.clear();
+				
+				List<Document> laTimesDocs = parseLATimes();
+				indexer.processIndex(laTimesDocs, indexDirectory);
+				laTimesDocs.clear();
+				
+				System.out.println("Indexing done...");
+			}
 
 			List<DocumentQuery> queries = new ArrayList<DocumentQuery>();
 			List<DocumentQuery> queryList = QueryParser.parse(properties.getProperty(QUERY_FILE_PATH), queries);
@@ -81,6 +86,16 @@ public class LuceneApp {
 		} catch (IOException | IllegalAccessException | URISyntaxException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static Path getPath(String analyzerName) {
+		File folder = new File(INDEX_DIRECTORY+System.getProperty("file.separator")+analyzerName);
+		return Paths.get(folder.getAbsolutePath());
+	}
+
+	private static boolean indexExists(Path indexDirectory) {
+		File folder = new File(indexDirectory.toString());
+		return folder.exists();
 	}
 
 	private static List<Document> parseLATimes() throws IOException, IllegalAccessException, URISyntaxException {
@@ -111,11 +126,8 @@ public class LuceneApp {
 		return LuceneDocumentConverter.convertFBIS(fbisDocList);
 	}
 	
-	private static Path createIndexDirectory() throws IOException {
-		File folder = new File(INDEX_DIRECTORY);
-		if (folder.exists()) {
-			FileUtils.deleteDirectory(folder);
-		}
+	private static Path createIndexDirectory(Path indexDirectory) throws IOException {
+		File folder = new File(indexDirectory.toString());
 		folder.mkdir();
 		return Paths.get(folder.getAbsolutePath());
 	}
