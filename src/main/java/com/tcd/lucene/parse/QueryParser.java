@@ -46,7 +46,7 @@ public class QueryParser {
 			query.setQueryTitle(element.ownText());
 			break;
 		case Constants.Query.DESC:
-			query.setDescription(element.text());
+			query.setDescription(element.ownText());
 			break;
 		case Constants.Query.NARR:
 			query.setNarrative(element.ownText());

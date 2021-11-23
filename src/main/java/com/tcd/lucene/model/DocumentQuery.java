@@ -11,7 +11,8 @@ public class DocumentQuery {
 	}
 	
 	public void setQueryNumber(String queryNumber) {
-		this.queryNumber = queryNumber;
+		String number = queryNumber.replaceAll("Number: ", "");
+		this.queryNumber = number;
 	}
 	
 	public String getQueryTitle() {

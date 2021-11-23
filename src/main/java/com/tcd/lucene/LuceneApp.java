@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 
@@ -51,7 +52,7 @@ public class LuceneApp {
 			properties = Utils.getProperties(args[0]);
 			//set the analyzer and similarity
 			Indexer indexer = new EnglishIndexer();
-			Similarity similarity = new ClassicSimilarity(); 
+			Similarity similarity = new BM25Similarity(1.05f, 0.75f); 
 			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
 			
 			if(!indexExists(indexDirectory)) {

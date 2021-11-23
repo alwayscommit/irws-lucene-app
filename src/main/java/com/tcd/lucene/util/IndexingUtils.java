@@ -12,7 +12,7 @@ import org.apache.lucene.analysis.CharArraySet;
 public class IndexingUtils {
 
 	public static CharArraySet getStopwords() throws IOException, URISyntaxException {
-		InputStream stopwordsStream = IndexingUtils.class.getClassLoader().getResourceAsStream("stopwords.txt");
+		InputStream stopwordsStream = IndexingUtils.class.getClassLoader().getResourceAsStream("stopwords2.txt");
 		String text = new String(IOUtils.toByteArray(stopwordsStream));
 		final List<String> stopWords = Arrays.asList(text.split(" "));
 		final CharArraySet stopSet = new CharArraySet(stopWords, false);

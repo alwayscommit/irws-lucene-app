@@ -53,13 +53,9 @@ public class LuceneSearcher {
 	public void searchAndGenerateOutput(List<DocumentQuery> queryList, Analyzer analyzer) throws IOException, ParseException {
 		FileWriter fw = new FileWriter(OUTPUT_FILE);
 	    PrintWriter pw = new PrintWriter(fw);
-		HashMap<String, Float> boosts = new HashMap<String, Float>();
-		// revisit these booster values
-		boosts.put("header", 2f);
-		boosts.put("body", 4.7f);
 		
 		for (DocumentQuery docQuery: queryList) {
-			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "header", "body" }, analyzer, boosts);
+			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "header", "body" }, analyzer, getBoosts());
 			// default
 			parser.setDefaultOperator(Operator.OR);
 			String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getNarrative();
@@ -77,11 +73,19 @@ public class LuceneSearcher {
 	 * Generates output file for the scores
 	 */
 
+	private HashMap<String, Float> getBoosts() {
+		HashMap<String, Float> boosts = new HashMap<String, Float>();
+		// revisit these booster values
+		boosts.put("header", 0.2f);
+		boosts.put("body", 0.8f);
+		return boosts;
+	}
+
 	public void addScoreToOutputFile (String queryId, ScoreDoc[] hits, PrintWriter pw) throws IOException {
 		for (int i = 0; i < hits.length; i++)
 		{
 			Document hitDoc = this.indexSearcher.doc(hits[i].doc);
-			String queryOutput = queryId.split(" ")[1]  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
+			String queryOutput = queryId  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
 			pw.println(queryOutput);
 //			System.out.println(queryOutput);
 		}
