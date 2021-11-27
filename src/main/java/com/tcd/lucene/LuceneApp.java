@@ -13,10 +13,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.similarities.BM25Similarity;
-import org.apache.lucene.search.similarities.ClassicSimilarity;
-import org.apache.lucene.search.similarities.Similarity;
-
+import org.apache.lucene.search.similarities.*;
+import org.apache.lucene.analysis.synonym.SynonymGraphFilter;
 import com.tcd.lucene.index.EnglishIndexer;
 import com.tcd.lucene.index.Indexer;
 import com.tcd.lucene.model.DocumentQuery;
@@ -52,7 +50,7 @@ public class LuceneApp {
 			properties = Utils.getProperties(args[0]);
 			//set the analyzer and similarity
 			Indexer indexer = new EnglishIndexer();
-			Similarity similarity = new BM25Similarity(1.05f, 0.75f); 
+			Similarity similarity = new DFRSimilarity(new BasicModelIF(), new AfterEffectL(), new NormalizationH2());
 			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
 			
 			if(!indexExists(indexDirectory)) {
