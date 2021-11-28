@@ -50,9 +50,6 @@ public class DocumentQuery {
 			}
 		}
 		if(sentanceFilterList.size() > 0) {
-			String a = String.join(". ", sentanceFilterList).trim();
-			System.out.println("Query ID  "+ queryNumber);
-			System.out.println(a);
 			return String.join(". ", sentanceFilterList).trim();
 		} else {
 			return "";
