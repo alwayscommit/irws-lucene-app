@@ -16,6 +16,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
+import org.apache.lucene.search.similarities.*;
 
 import com.tcd.lucene.index.EnglishIndexer;
 import com.tcd.lucene.index.Indexer;
@@ -52,7 +53,9 @@ public class LuceneApp {
 			properties = Utils.getProperties(args[0]);
 			//set the analyzer and similarity
 			Indexer indexer = new EnglishIndexer();
-			Similarity similarity = new BM25Similarity(1.05f, 0.75f); 
+//			Similarity similarity = new BM25Similarity(0.75f, 0.9f); 
+			Similarity[] sims = {new BM25Similarity(1.2f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
+			Similarity similarity = new MultiSimilarity(sims);
 			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
 			
 			if(!indexExists(indexDirectory)) {

@@ -15,6 +15,9 @@ import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.queryparser.classic.QueryParser.Operator;
+import org.apache.lucene.search.BooleanClause;
+import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
@@ -56,9 +59,8 @@ public class LuceneSearcher {
 		
 		for (DocumentQuery docQuery: queryList) {
 			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "header", "body" }, analyzer, getBoosts());
-			// default
 			parser.setDefaultOperator(Operator.OR);
-			String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getNarrative();
+			String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getActualNarrative();
 			queryString = queryString.trim();
 			Query query = parser.parse(QueryParser.escape(queryString));
 			ScoreDoc[] scoreDocs = this.indexSearcher.search(query, MAX_RESULTS).scoreDocs;
