@@ -3,6 +3,7 @@ package com.tcd.lucene.index;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.text.ParseException;
 import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -21,7 +22,7 @@ public abstract class Indexer {
 	}
 
 	// Method to processIndex
-    public void processIndex( List<Document> documents, Path indexDirectory) throws IOException {
+    public void processIndex( List<Document> documents, Path indexDirectory) throws IOException, ParseException {
     	System.out.println("Indexing with :: " + analyzer.getClass().getSimpleName());
 		// Open the directory that contains the search index
 		Directory directory = FSDirectory.open(indexDirectory);

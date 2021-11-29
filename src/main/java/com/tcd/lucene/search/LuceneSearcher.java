@@ -3,11 +3,14 @@ package com.tcd.lucene.search;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 
+import com.tcd.lucene.util.IndexingUtils;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -25,6 +28,7 @@ import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
 import com.tcd.lucene.model.DocumentQuery;
 import com.tcd.lucene.util.Constants.LuceneDocument;
+import org.apache.lucene.util.QueryBuilder;
 
 /**
  * This class is responsible for setting up the search configuration as well as perform the search
@@ -89,7 +93,7 @@ public class LuceneSearcher {
 			Document hitDoc = this.indexSearcher.doc(hits[i].doc);
 			String queryOutput = queryId  + " Q0 " + hitDoc.get(LuceneDocument.DOCUMENT_ID) + " 1 " + hits[i].score + " STANDARD";
 			pw.println(queryOutput);
-//			System.out.println(queryOutput);
+			// System.out.println(queryOutput);
 		}
 	}
 		

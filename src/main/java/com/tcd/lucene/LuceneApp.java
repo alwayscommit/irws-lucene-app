@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.tcd.lucene.index.CustomIndexer;
 import org.apache.commons.io.FileUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -89,7 +90,7 @@ public class LuceneApp {
 			LuceneSearcher luceneSearcher = new LuceneSearcher(indexDirectory, similarity);
 			luceneSearcher.searchAndGenerateOutput(queryList, indexer.getAnalyzer());
 
-		} catch (IOException | IllegalAccessException | URISyntaxException e) {
+		} catch (IOException | IllegalAccessException | URISyntaxException | java.text.ParseException e) {
 			e.printStackTrace();
 		}
 	}
