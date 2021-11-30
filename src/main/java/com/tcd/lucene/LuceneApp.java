@@ -19,8 +19,6 @@ import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.search.similarities.*;
 import org.apache.lucene.analysis.synonym.SynonymGraphFilter;
-
-
 import com.tcd.lucene.index.EnglishIndexer;
 import com.tcd.lucene.index.Indexer;
 import com.tcd.lucene.model.DocumentQuery;
@@ -55,10 +53,11 @@ public class LuceneApp {
 			
 			properties = Utils.getProperties(args[0]);
 			//set the analyzer and similarity
-			Indexer indexer = new EnglishIndexer();
-			Similarity[] sims = {new BM25Similarity(0.75f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
-//			Similarity similarity = new MultiSimilarity(sims);
-			Similarity similarity = new DFRSimilarity(new BasicModelIF(), new AfterEffectL(), new NormalizationH2());
+//			Indexer indexer = new EnglishIndexer();
+			Indexer indexer = new CustomIndexer();
+//			Similarity similarity = new BM25Similarity(0.75f, 0.9f);
+			Similarity[] sims = {new BM25Similarity(1.2f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
+			Similarity similarity = new MultiSimilarity(sims);
 			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
 			
 			if(!indexExists(indexDirectory)) {
