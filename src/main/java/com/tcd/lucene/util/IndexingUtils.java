@@ -19,7 +19,7 @@ public class IndexingUtils {
 		return CharArraySet.unmodifiableSet(stopSet);
 	}
 
-	public static List<String> getStopwordsList() throws IOException, URISyntaxException {
+	public static List<String> getStopwordsList() throws IOException {
 		InputStream stopwordsStream = IndexingUtils.class.getClassLoader().getResourceAsStream("stopwords2.txt");
 		String text = new String(IOUtils.toByteArray(stopwordsStream));
 		return Arrays.asList(text.split(" "));
