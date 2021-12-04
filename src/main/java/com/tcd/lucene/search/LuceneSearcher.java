@@ -4,9 +4,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
+import com.tcd.lucene.analyzer.WordNetAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -32,7 +34,6 @@ import com.tcd.lucene.util.Constants.LuceneDocument;
  *
  */
 public class LuceneSearcher {
-
 	private IndexSearcher indexSearcher;
 	// Limit the number of search results we get
 	private static int MAX_RESULTS = 1000;
