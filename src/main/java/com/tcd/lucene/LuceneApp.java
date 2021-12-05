@@ -16,9 +16,12 @@ import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 import org.apache.lucene.search.similarities.LMSimilarity;
 import org.apache.lucene.search.similarities.MultiSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
+import org.apache.lucene.search.similarities.*;
 
+import com.tcd.lucene.index.CustomIndexer;
 import com.tcd.lucene.index.EnglishIndexer;
 import com.tcd.lucene.index.Indexer;
+import com.tcd.lucene.index.WordNetIndexer;
 import com.tcd.lucene.model.DocumentQuery;
 import com.tcd.lucene.model.FBISDocument;
 import com.tcd.lucene.model.FR94Document;
@@ -46,11 +49,12 @@ public class LuceneApp {
 
 	// private static final String TEST_PATH = "D:\\AAATrinity\\Information Retrieval and Web Search\\Assignment\\Assignment 2\\data\\test\\";
 
-	public static void main(String[] args) throws IOException, ParseException {
+	public static void main(String[] args) throws Exception {
 		try {
 			
 			properties = Utils.getProperties(args[0]);
 			//set the analyzer and similarity
+//			Indexer indexer = new WordNetIndexer();
 			Indexer indexer = new EnglishIndexer();
 //			Similarity[] sims = {new BM25Similarity(0.75f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
 //			Similarity similarity = new BM25Similarity(0.75f, 0.9f);
@@ -86,7 +90,7 @@ public class LuceneApp {
 
 			// Search
 			LuceneSearcher luceneSearcher = new LuceneSearcher(indexDirectory, similarity);
-			luceneSearcher.searchAndGenerateOutput(queryList, indexer.getAnalyzer());
+			luceneSearcher.searchAndGenerateOutput(queryList, indexer.getAnalyzer(), indexDirectory);
 
 		} catch (IOException | IllegalAccessException | URISyntaxException e) {
 			e.printStackTrace();

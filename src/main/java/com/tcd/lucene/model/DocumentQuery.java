@@ -64,6 +64,24 @@ public class DocumentQuery {
 		}
 	}
 	
+	public String getActualNegativeNarrative() {
+		List<String> list = Arrays.asList(this.narrative.split("\\.\\s+"));
+		List<String> sentanceFilterList = new ArrayList<String>();
+		for (String item: list) {
+			if(item.contains("not relevant") && !item.contains("irrelevant")) {
+				String re = item.replaceAll(
+						"(?i)\"are also not relevant|are not relevant|are irrelevant|is not relevant|not|NOT",
+						"");
+				sentanceFilterList.add(re);
+			}
+		}
+		if(sentanceFilterList.size() > 0) {
+			return String.join(". ", sentanceFilterList).trim();
+		} else {
+			return null;
+		}
+	}
+	
 	public void setNarrative(String narrative) {
 		String actualNarrative = narrative.replaceAll("Narrative: |etc.", "");
 		this.narrative = actualNarrative.trim();

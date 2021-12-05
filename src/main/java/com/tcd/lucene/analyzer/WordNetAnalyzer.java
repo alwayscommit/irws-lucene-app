@@ -29,6 +29,10 @@ import static org.apache.lucene.analysis.miscellaneous.WordDelimiterGraphFilter.
 
 public class WordNetAnalyzer extends StopwordAnalyzerBase {
     private final Path currentRelativePath = Paths.get("").toAbsolutePath();
+    
+    public WordNetAnalyzer(CharArraySet stopWordSet) {
+    	super(stopWordSet);
+    }
 
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
