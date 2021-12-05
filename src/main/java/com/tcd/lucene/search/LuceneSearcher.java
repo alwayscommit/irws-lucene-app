@@ -64,9 +64,15 @@ public class LuceneSearcher {
 
 			Query titleQuery = parser.parse(QueryParser.escape(docQuery.getQueryTitle()));
 			Query descriptionQuery = parser.parse(QueryParser.escape(docQuery.getDescription()));
-			Query narrativeQuery = parser.parse(QueryParser.escape(docQuery.getNarrative()));
+			String narrative = docQuery.getActualNarrative();
+			Query narrativeQuery = null;
+			if(narrative!=null) {
+				narrativeQuery = parser.parse(QueryParser.escape(narrative));
+			}
 
-			booleanQuery.add(new BoostQuery(narrativeQuery, 1.4f), BooleanClause.Occur.SHOULD);
+			if(narrativeQuery!=null) {
+				booleanQuery.add(new BoostQuery(narrativeQuery, 1.4f), BooleanClause.Occur.SHOULD);
+			}
 			booleanQuery.add(new BoostQuery(titleQuery, 4f), BooleanClause.Occur.SHOULD);
 			booleanQuery.add(new BoostQuery(descriptionQuery, 2.5f), BooleanClause.Occur.SHOULD);
 
@@ -86,7 +92,7 @@ public class LuceneSearcher {
 		HashMap<String, Float> boosts = new HashMap<String, Float>();
 		// revisit these booster values
 		boosts.put("headline", 0.6f);
-		boosts.put("body", 0.8f);
+		boosts.put("body", 1f);
 		return boosts;
 	}
 
