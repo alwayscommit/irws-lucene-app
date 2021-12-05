@@ -58,7 +58,7 @@ public class LuceneSearcher {
 	    PrintWriter pw = new PrintWriter(fw);
 		
 		for (DocumentQuery docQuery: queryList) {
-			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "header", "body" }, analyzer, getBoosts());
+			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] {"headline", "body"}, analyzer, getBoosts());
 			parser.setDefaultOperator(Operator.OR);
 			String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getActualNarrative();
 			queryString = queryString.trim();
@@ -78,7 +78,7 @@ public class LuceneSearcher {
 	private HashMap<String, Float> getBoosts() {
 		HashMap<String, Float> boosts = new HashMap<String, Float>();
 		// revisit these booster values
-		boosts.put("header", 0.2f);
+		boosts.put("headline", 0.6f);
 		boosts.put("body", 0.8f);
 		return boosts;
 	}

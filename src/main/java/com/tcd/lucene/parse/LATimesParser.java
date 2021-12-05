@@ -63,7 +63,7 @@ public class LATimesParser {
 			laTimesDoc.setDocNo(element.ownText());
 			break;
 		case Constants.LATimes.HEADLINE:
-			laTimesDoc.setHeadline(element.ownText());
+			laTimesDoc.setHeadline(element.text());
 			break;
 		}
 	}

@@ -15,6 +15,15 @@ public class FBISDocument {
 	private String h4 = "";
 	private String f = "";
 	private String text = "";
+	private String header = "";
+
+	public String getHeader() {
+		return header;
+	}
+
+	public void setHeader(String header) {
+		this.header = header;
+	}
 
 	public String getDoc() {
 		return doc;

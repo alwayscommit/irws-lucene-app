@@ -46,6 +46,9 @@ public class FBISParser {
 		case Constants.FBIS.DOCNO:
 			fbisDoc.setDocNo(element.ownText());
 			break;
+		case Constants.FBIS.HEADER:
+			fbisDoc.setHeader(element.text());
+			break;
 		case Constants.FBIS.HT:
 			fbisDoc.setHt(element.ownText());
 			break;

@@ -21,6 +21,7 @@ public class LuceneDocumentConverter {
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, fbisDocument.getDocNo(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.BODY, fbisDocument.getText(), Field.Store.YES));
+			doc.add(new StringField(Constants.LuceneDocument.HEADLINE, fbisDocument.getHeader(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.HEADERS, fbisDocument.getAbs() + BLANK_SPACE + fbisDocument.getF() + BLANK_SPACE + fbisDocument.getH3() + BLANK_SPACE + fbisDocument.getHt()
 					+ BLANK_SPACE + fbisDocument.getH4() + BLANK_SPACE + fbisDocument.getPhrase(), Field.Store.YES));
 			luceneDocuments.add(doc);
@@ -46,8 +47,9 @@ public class LuceneDocumentConverter {
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, ftDocument.getDocno(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.BODY, ftDocument.getText(), Field.Store.YES));
-			doc.add(new TextField(Constants.LuceneDocument.HEADERS, ftDocument.getHeadline() + BLANK_SPACE + ftDocument.getTp() + BLANK_SPACE + ftDocument.getPub() + BLANK_SPACE + ftDocument.getXx(),
+			doc.add(new TextField(Constants.LuceneDocument.HEADERS, ftDocument.getTp() + BLANK_SPACE + ftDocument.getPub() + BLANK_SPACE + ftDocument.getXx(),
 					Field.Store.YES));
+			doc.add(new StringField(Constants.LuceneDocument.HEADLINE, ftDocument.getHeadline(), Field.Store.YES));
 			luceneDocuments.add(doc);
 		}
 		return luceneDocuments;
@@ -59,8 +61,9 @@ public class LuceneDocumentConverter {
 			Document doc = new Document();
 			doc.add(new StringField(Constants.LuceneDocument.DOCUMENT_ID, laTimesDocument.getDocNo(), Field.Store.YES));
 			doc.add(new TextField(Constants.LuceneDocument.BODY, laTimesDocument.getText() + BLANK_SPACE + laTimesDocument.getCorrection(), Field.Store.YES));
-			doc.add(new TextField(Constants.LuceneDocument.HEADERS, laTimesDocument.getHeadline() + BLANK_SPACE + laTimesDocument.getSubject() + BLANK_SPACE + laTimesDocument.getDateline(),
+			doc.add(new TextField(Constants.LuceneDocument.HEADERS, laTimesDocument.getSubject() + BLANK_SPACE + laTimesDocument.getDateline(),
 					Field.Store.YES));
+			doc.add(new StringField(Constants.LuceneDocument.HEADLINE, laTimesDocument.getHeadline(), Field.Store.YES));
 			luceneDocuments.add(doc);
 		}
 		return luceneDocuments;
