@@ -56,14 +56,22 @@ public class LuceneSearcher {
 	public void searchAndGenerateOutput(List<DocumentQuery> queryList, Analyzer analyzer) throws IOException, ParseException {
 		FileWriter fw = new FileWriter(OUTPUT_FILE);
 	    PrintWriter pw = new PrintWriter(fw);
-		
+
 		for (DocumentQuery docQuery: queryList) {
+			BooleanQuery.Builder booleanQuery = new BooleanQuery.Builder();
+
 			MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[] { "header", "body" }, analyzer, getBoosts());
 			parser.setDefaultOperator(Operator.OR);
-			String queryString = docQuery.getQueryTitle() + " " + docQuery.getDescription() + " " + docQuery.getActualNarrative();
-			queryString = queryString.trim();
-			Query query = parser.parse(QueryParser.escape(queryString));
-			ScoreDoc[] scoreDocs = this.indexSearcher.search(query, MAX_RESULTS).scoreDocs;
+
+			Query titleQuery = parser.parse(QueryParser.escape(docQuery.getQueryTitle()));
+			Query descriptionQuery = parser.parse(QueryParser.escape(docQuery.getDescription()));
+			Query narrativeQuery = parser.parse(QueryParser.escape(docQuery.getNarrative()));
+
+			booleanQuery.add(new BoostQuery(narrativeQuery, 1.4f), BooleanClause.Occur.SHOULD);
+			booleanQuery.add(new BoostQuery(titleQuery, 4f), BooleanClause.Occur.SHOULD);
+			booleanQuery.add(new BoostQuery(descriptionQuery, 2.5f), BooleanClause.Occur.SHOULD);
+
+			ScoreDoc[] scoreDocs = this.indexSearcher.search(booleanQuery.build(), MAX_RESULTS).scoreDocs;
 			this.addScoreToOutputFile(docQuery.getQueryNumber(), scoreDocs, pw);
 		}
 		System.out.println("Output file generated!");
