@@ -9,16 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.similarities.BM25Similarity;
-import org.apache.lucene.search.similarities.ClassicSimilarity;
+import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
+import org.apache.lucene.search.similarities.LMSimilarity;
+import org.apache.lucene.search.similarities.MultiSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
-import org.apache.lucene.search.similarities.*;
-import org.apache.lucene.analysis.synonym.SynonymGraphFilter;
-
 
 import com.tcd.lucene.index.EnglishIndexer;
 import com.tcd.lucene.index.Indexer;
@@ -56,7 +53,7 @@ public class LuceneApp {
 			//set the analyzer and similarity
 			Indexer indexer = new EnglishIndexer();
 //			Similarity[] sims = {new BM25Similarity(0.75f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
-//			Similarity similarity = new MultiSimilarity(sims);
+//			Similarity similarity = new BM25Similarity(0.75f, 0.9f);
 //			Similarity similarity = new DFRSimilarity(new BasicModelIF(), new AfterEffectL(), new NormalizationH2());
 			Similarity[] sims = {new BM25Similarity(0.75f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
 			Similarity similarity = new MultiSimilarity(sims);
