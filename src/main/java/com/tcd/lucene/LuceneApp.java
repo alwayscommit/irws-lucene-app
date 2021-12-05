@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.tcd.lucene.index.WordNetIndexer;
 import org.apache.commons.io.FileUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -56,8 +57,7 @@ public class LuceneApp {
 			//set the analyzer and similarity
 			Indexer indexer = new EnglishIndexer();
 			Similarity[] sims = {new BM25Similarity(0.75f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
-//			Similarity similarity = new MultiSimilarity(sims);
-			Similarity similarity = new DFRSimilarity(new BasicModelIF(), new AfterEffectL(), new NormalizationH2());
+			Similarity similarity = new MultiSimilarity(sims);
 			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
 			
 			if(!indexExists(indexDirectory)) {
