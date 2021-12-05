@@ -61,7 +61,7 @@ public class LuceneApp {
 //			Similarity similarity = new DFRSimilarity(new BasicModelIF(), new AfterEffectL(), new NormalizationH2());
 			Similarity[] sims = {new BM25Similarity(0.75f, 0.9f), new LMJelinekMercerSimilarity(new LMSimilarity.DefaultCollectionModel(), 0.5f)};
 			Similarity similarity = new MultiSimilarity(sims);
-			Path indexDirectory = getPath(indexer.getClass().getSimpleName());
+			Path indexDirectory = getPath(indexer.getClass().getSimpleName(), similarity.getClass().getSimpleName());
 			
 			if(!indexExists(indexDirectory)) {
 				indexDirectory = createIndexDirectory(indexDirectory);
@@ -97,8 +97,8 @@ public class LuceneApp {
 		}
 	}
 
-	private static Path getPath(String analyzerName) {
-		File folder = new File(INDEX_DIRECTORY+System.getProperty("file.separator")+analyzerName);
+	private static Path getPath(String analyzerName, String similarityName) {
+		File folder = new File(INDEX_DIRECTORY+System.getProperty("file.separator")+analyzerName+"-"+similarityName);
 		return Paths.get(folder.getAbsolutePath());
 	}
 

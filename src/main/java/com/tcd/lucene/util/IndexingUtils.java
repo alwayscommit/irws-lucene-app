@@ -18,4 +18,10 @@ public class IndexingUtils {
 		final CharArraySet stopSet = new CharArraySet(stopWords, false);
 		return CharArraySet.unmodifiableSet(stopSet);
 	}
+
+	public static List<String> getStopwordsList() throws IOException {
+		InputStream stopwordsStream = IndexingUtils.class.getClassLoader().getResourceAsStream("stopwords2.txt");
+		String text = new String(IOUtils.toByteArray(stopwordsStream));
+		return Arrays.asList(text.split(" "));
+	}
 }
