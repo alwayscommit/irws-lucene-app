@@ -71,9 +71,9 @@ public class LuceneSearcher {
 			}
 
 			if(narrativeQuery!=null) {
-				booleanQuery.add(new BoostQuery(narrativeQuery, 1.4f), BooleanClause.Occur.SHOULD);
+				booleanQuery.add(new BoostQuery(narrativeQuery, 1.9f), BooleanClause.Occur.SHOULD);
 			}
-			booleanQuery.add(new BoostQuery(titleQuery, 4f), BooleanClause.Occur.SHOULD);
+			booleanQuery.add(new BoostQuery(titleQuery, 4.2f), BooleanClause.Occur.SHOULD);
 			booleanQuery.add(new BoostQuery(descriptionQuery, 2.5f), BooleanClause.Occur.SHOULD);
 
 			ScoreDoc[] scoreDocs = this.indexSearcher.search(booleanQuery.build(), MAX_RESULTS).scoreDocs;

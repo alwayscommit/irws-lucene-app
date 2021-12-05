@@ -46,7 +46,7 @@ public class DocumentQuery {
 		for (String item: list) {
 			if(!item.contains("not relevant") && !item.contains("irrelevant")) {
 				String re = item.replaceAll(
-						"(?i);|,|Relevant items include|A relevant document will provide|A relevant document will discuss|A relevant document will provide information regarding|A relevant document could identify|A relevant document will provide information|Relevant documents will contain any information about the|A relevant document must discuss|A relevant document identifies|documents|document|Relevant documents will discuss the|a relevant document|a document will|to be relevant|relevant documents|a document must|relevant|will contain|will discuss|will provide|must cite",
+						"(?i)To be relevant, a document must discuss|also relevant|A relevant document identifies|To be relevant, a document must|The intent of this query|Relevant documents|is relevant|A relevant document must|Relevant items include|A relevant document will provide|A relevant document will discuss|A relevant document will provide information regarding|A relevant document could identify|A relevant document will provide information|Relevant documents will contain any information about the|A relevant document must discuss|A relevant document identifies|documents|document|Relevant documents will discuss the|a relevant document|a document will|to be relevant|relevant documents|a document must|will contain|will discuss|will provide|must cite",
 						"");
 				sentanceFilterList.add(re);
 			} else {
