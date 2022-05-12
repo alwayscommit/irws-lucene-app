@@ -1,7 +1,7 @@
 # irws-lucene-app
 Lucene Search Engine designed by Dumbledore's Army
 
-1. Login onto Azure VM - 20.105.171.105 using the private key shared in the email
+1. Login onto Azure VM -  using the private key shared in the email
 2. The project is already cloned at /home/ranglana/assignment2/irws-lucene-app, you can run a 'git pull' in this folder to get the latest code
 3. Run "mvn clean package" after fetching the latest code
 4. Use the following command after you build the project successfully. We need to allocate more memory for the program.
